@@ -1,6 +1,6 @@
 <?php
 $host       = "localhost";
-$database   = "ancient_creatures2";
+$database   = "";
 $user       = "root";
 $password   = "";
 
