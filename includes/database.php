@@ -1,6 +1,6 @@
 <?php
 $host       = "localhost";
-$database   = "";
+$database   = "rijschool_mado";
 $user       = "root";
 $password   = "";
 
