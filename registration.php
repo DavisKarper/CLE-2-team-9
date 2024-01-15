@@ -1,5 +1,4 @@
 <?php
-
 //je maakt verbinding met de database.
 /**@var mysqli $db */
 require_once "includes/database.php";
@@ -34,9 +33,7 @@ $email = mysqli_escape_string($db, $_POST['email']);
 $userName = mysqli_escape_string($db, $_POST['userName']);
 $password = mysqli_escape_string($db, $_POST['password']);
 
-session_start();
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-$_SESSION['password'] = $password;
 
 $query = "INSERT INTO users (email, user_name, password)
 VALUES('$email', '$userName', '$password')";
