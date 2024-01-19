@@ -1,8 +1,21 @@
 <?php
-
-
+session_start();
+if (isset($_POST['no-date-button'])) {
+    //zend data door naar bevestigingspagina
+    $_SESSION['date'] = 'Nog inplannen';
+    $_SESSION['planned_in'] = 0;
+    //ga door naar bevestigingspagina
+    header('location: confirm.php');
+    exit;
+} else if (isset($_POST['date-button'])) {
+    //zend data door naar andere bevestigingspagina
+    $_SESSION['date'] = $_POST['date'];
+    $_SESSION['planned_in'] = 1;
+    //ga door naar bevestigingspagina
+    header('location: confirm.php');
+    exit;
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -1041,7 +1054,7 @@
 <div class="app-container" ng-app="dateTimeApp" ng-controller="dateTimeCtrl as ctrl" ng-cloak>
 
     <div date-picker datepicker-title="Select Date" picktime="true" pickdate="true" pickpast="false"
-         mondayfirst="false" custom-message="You have selected" selecteddate="ctrl.selected_date"
+         mondayfirst="true" custom-message="You have selected" selecteddate="ctrl.selected_date"
          updatefn="ctrl.updateDate(newdate)">
 
         <div class="datepicker" ng-class="{
@@ -1125,27 +1138,21 @@
                                 <div class="am-pm-button" ng-click="changetime('am');">am</div>
                                 <div class="am-pm-button" ng-click="changetime('pm');">pm</div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
-
-            <div>
-
-
-            </div>
-
-
         </div>
     </div>
 </div>
 
-<div class="buttons-container">
-    <div class="cancel-button">Bellen voor andere datum &#10095</div>
-    <div class="save-button">Direct aanmelden &#10095</div>
-</div>
+
+<div class="buttons-container"><form method="POST" name="datePickerForm">
+    <input type="hidden" name="date" value="">
+    <input class="cancel-button" type="submit" name="no-date-button" value="Bellen voor andere datum &#10095" />
+    <input class="save-button" type="submit" name="date-button" value="Direct aanmelden &#10095" />
+</form></div>
+
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js'></script>
@@ -1217,6 +1224,7 @@
             // Do something with the returned date here.
 
             console.log(newdate);
+            document.forms.datePickerForm.date.value = newdate;
         };
     });
 
@@ -1739,9 +1747,9 @@
         };
     });
 </script>
-
-
-
+<script>
+    document.forms.datePickerForm.date.value = ctrl.selected_date;
+</script>
 </body>
 
 </html>
