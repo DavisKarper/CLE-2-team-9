@@ -208,7 +208,7 @@ if (isset($_POST['no-date-button'])) {
             color: #FFF;
             margin-top: 150px;
             padding-bottom: 25px;
-            background-color: #272A3B;
+            background: linear-gradient(to bottom, #29BFE2 0%, #1259C7 100%);
 
         }
 
