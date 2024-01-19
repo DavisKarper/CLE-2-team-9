@@ -376,7 +376,7 @@
         </form>
 
         <button>
-            <a href="datum.html"> Kiez uw Datum en tijdstip &#10095</a>
+            <a href="datum.php"> Kiez uw Datum en tijdstip &#10095</a>
         </button>
     </main>
 
