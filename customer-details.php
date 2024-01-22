@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-$lesson_type_id = $_GET['opleiding'];
-$errors = ['name'=> '', 'email'=> '', 'phone_number'=> '', 'postcode'=> '', 'address'=> ''];
+$lesson_type_id = $_GET["opleiding"];
+$errors = ['name'=> '', 'email'=> '', 'phone_number'=> '', 'postcode'=> '', 'address'=> '', 'lesson_packet'=> ''];
 //Check of het formulier is ingevuld. Zo niet, laat het formulier zien en behoud wat er in staat als het deels ingevuld is:
 if (isset($_POST['submit'])) {
     if ($_POST['name'] == '') {
@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
     }
 }
 
-if ($errors['name'] == '  ' && $errors['email'] == ' ' && $errors['phone_number'] == ' ' && $errors['postcode'] == ' ' && $errors['address'] == ' ' && $errors['lesson_packet'] == ' ') {
+if ($errors['name'] == ' ' && $errors['email'] == ' ' && $errors['phone_number'] == ' ' && $errors['postcode'] == ' ' && $errors['address'] == ' ' && $errors['lesson_packet'] == ' ') {
     //stuur door naar de volgende pagina, met de gegevens in de session.
     $_SESSION['name'] = $_POST['name'];
     $_SESSION['email'] = $_POST['email'];
