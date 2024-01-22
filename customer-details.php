@@ -1,42 +1,43 @@
 <?php
 session_start();
 
+$lesson_type_id = $_GET['opleiding'];
 $errors = ['name'=> '', 'email'=> '', 'phone_number'=> '', 'postcode'=> '', 'address'=> ''];
 //Check of het formulier is ingevuld. Zo niet, laat het formulier zien en behoud wat er in staat als het deels ingevuld is:
 if (isset($_POST['submit'])) {
     if ($_POST['name'] == '') {
-        $errors['name'] = 'You still have to fill the name in.';
+        $errors['name'] = 'Je bent vergeten je naam in te vullen.';
     } else {
         $errors['name'] = ' ';
     }
     if ($_POST['email'] == '') {
-        $errors['email'] = 'You still have to fill the scientific name in.';
+        $errors['email'] = 'Vul je email in.';
     } else {
         $errors['email'] = ' ';
     }
     if ($_POST['phone_number'] == '') {
-        $errors['phone_number'] = 'You have to choose a time period';
+        $errors['phone_number'] = 'Vul jouw telefoonnummer in';
     } else {
         $errors['phone_number'] = ' ';
     }
     if ($_POST['postcode'] == '') {
-        $errors['postcode'] = 'You have to choose a postcode';
+        $errors['postcode'] = 'Je moet een postcode opgeven';
     } else {
         $errors['postcode'] = ' ';
     }
     if ($_POST['address'] == '') {
-        $errors['address'] = 'You have to choose a address';
+        $errors['address'] = 'Je moet je straatnaam en huisnummer nog invullen';
     } else {
         $errors['address'] = ' ';
     }
     if ($_POST['lesson_packet'] == '') {
-        $errors['lesson_packet'] = 'You have to choose a lesson_packet';
+        $errors['lesson_packet'] = 'je moet een lespakket kiezen';
     } else {
         $errors['lesson_packet'] = ' ';
     }
 }
 
-if ($errors['name'] == ' ' && $errors['email'] == ' ' && $errors['phone_number'] == ' ' && $errors['postcode'] == ' ' && $errors['address'] == ' ' && $errors['lesson_packet'] == ' ') {
+if ($errors['name'] == '  ' && $errors['email'] == ' ' && $errors['phone_number'] == ' ' && $errors['postcode'] == ' ' && $errors['address'] == ' ' && $errors['lesson_packet'] == ' ') {
     //stuur door naar de volgende pagina, met de gegevens in de session.
     $_SESSION['name'] = $_POST['name'];
     $_SESSION['email'] = $_POST['email'];
@@ -44,8 +45,9 @@ if ($errors['name'] == ' ' && $errors['email'] == ' ' && $errors['phone_number']
     $_SESSION['postcode'] = $_POST['postcode'];
     $_SESSION['address'] = $_POST['address'];
     $_SESSION['lesson_packet'] = $_POST['lesson_packet'];
+    $_SESSION['lesson_type_id'] = $lesson_type_id;
 //Stuur door naar de volgende pagina (datum kiezen)
-    header('Location: index.php');
+    header('Location: datum.php');
     exit;
 }
 ?>
@@ -117,35 +119,35 @@ if ($errors['name'] == ' ' && $errors['email'] == ' ' && $errors['phone_number']
         }
 
         .bottom-home {
-            background-image: url(/img/house.png);
+            background-image: url(img/house.png);
             background-size: 25px;
             background-position: center center;
             background-repeat: no-repeat;
         }
 
         .bottom-auto {
-            background-image: url(/img/car.png);
+            background-image: url(img/car.png);
             background-size: 25px;
             background-position: center center;
             background-repeat: no-repeat;
         }
 
         .bottom-motor {
-            background-image: url(/img/motorcycle.png);
+            background-image: url(img/motorcycle.png);
             background-size: 25px;
             background-position: center center;
             background-repeat: no-repeat;
         }
 
         .bottom-aanhanger {
-            background-image: url(/img/vracht.png);
+            background-image: url(img/vracht.png);
             background-size: 25px;
             background-position: center center;
             background-repeat: no-repeat;
         }
 
         .bottom-brommer {
-            background-image: url(/img/brom.png);
+            background-image: url(img/brom.png);
             background-size: 25px;
             background-position: center center;
             background-repeat: no-repeat;
@@ -164,35 +166,35 @@ if ($errors['name'] == ' ' && $errors['email'] == ' ' && $errors['phone_number']
         }
 
         .bottom-home:hover {
-            background-image: url(/img/house-green.png);
+            background-image: url(img/house-green.png);
             background-size: 29px;
             background-position: center center;
             background-repeat: no-repeat;
         }
 
         .bottom-auto:hover {
-            background-image: url(/img/car-green.png);
+            background-image: url(img/car-green.png);
             background-size: 28px;
             background-position: center center;
             background-repeat: no-repeat;
         }
 
         .bottom-motor:hover {
-            background-image: url(/img/motor-green.png);
+            background-image: url(img/motor-green.png);
             background-size: 28px;
             background-position: center center;
             background-repeat: no-repeat;
         }
 
         .bottom-aanhanger:hover {
-            background-image: url(/img/vracht-green.png);
+            background-image: url(img/vracht-green.png);
             background-size: 27px;
             background-position: center center;
             background-repeat: no-repeat;
         }
 
         .bottom-brommer:hover {
-            background-image: url(/img/brom-green.png);
+            background-image: url(img/brom-green.png);
             background-size: 29px;
             background-position: center center;
             background-repeat: no-repeat;
@@ -240,6 +242,10 @@ if ($errors['name'] == ' ' && $errors['email'] == ' ' && $errors['phone_number']
             font-weight: bold;
             font-size: 25px;
         }
+
+        /*select#lesson_packet {*/
+        /*    width: 108%;*/
+        /*}*/
 
         form {
             margin: 0 auto;
@@ -378,9 +384,9 @@ if ($errors['name'] == ' ' && $errors['email'] == ' ' && $errors['phone_number']
 <header>
     <h1>Aanmelden voor Autorijles</h1>
     <div>
-        <a href="#">Home &#45</a>
-        <a href="#">Auto &#45</a>
-        <a href="#">Aanmelden</a>
+        <a href="index.html">Home &#45</a>
+        <a href="">Auto &#45</a>
+        <a href="">Aanmelden</a>
     </div>
 </header>
 
@@ -389,49 +395,50 @@ if ($errors['name'] == ' ' && $errors['email'] == ' ' && $errors['phone_number']
     <img src="img/step 1.png" alt="step indicator">
     <h2>Je gegevens</h2>
 
-    <form action="contactinfo" method="post">
+    <form action="" method="post">
 
         <label for="lesson_packet">
             <br>Kies je Motor pakket </br>
         </label>
         <select name="lesson_packet" id="lesson_packet">
-            <option value="0" selected="selected" disabled="">--- MAAK EEN KEUZE ---</option>
+            <option value="" selected="selected" disabled="">--- MAAK EEN KEUZE ---</option>
             <option value="A">Pakket Compleet A</option>
             <option value="B">Pakket Compleet B</option>
             <option value="C">Pakket Compleet C</option>
         </select>
+        <?= $errors['lesson_packet'] ?>
 
         <label for="name">
-            <br>Je Naam</br>
+            <br>Naam</br>
         </label>
-        <input type="text" name="name" placeholder="Femke Hart" value="<?php if ($errors['name'] == ' '){echo $_POST['name'];} ?>"/>>
+        <input type="text" name="name" placeholder="Femke Hart" value="<?php if ($errors['name'] == ' '){echo $_POST['name'];} ?>"/>
         <?= $errors['name'] ?>
         <label for="phone_number">
             <br>Telefoonnummer</br>
         </label>
-        <input type="text" name="phone_number" placeholder="0612345678" value="<?php if ($errors['phone_number'] == ' '){echo $_POST['phone_number'];} ?>"/>>
-        <?= $errors['phone_number'] ?>
+        <input type="text" name="phone_number" placeholder="0612345678" value="<?php if ($errors['phone_number'] == ' '){echo $_POST['phone_number'];} ?>"/>
+            <?= $errors['phone_number'] ?>
         <label for="address">
-            <br>straatnaam plus huinummer</br>
+            <br>Straatnaam en huisnummer</br>
         </label>
-        <input type="text" name="address" placeholder="wijnhaven 99" value="<?php if ($errors['address'] == ' '){echo $_POST['address'];} ?>"/>>
-        <?= $errors['address'] ?>
+        <input type="text" name="address" placeholder="Kanaalweg 6A" value="<?php if ($errors['address'] == ' '){echo $_POST['address'];} ?>"/>
+            <?= $errors['address'] ?>
         <label for="postcode">
-            <br>je postcode</br>
+            <br>Postcode</br>
         </label>
-        <input type="text" name="postcode" placeholder="2724PA" value="<?php if ($errors['postcode'] == ' '){echo $_POST['postcode'];} ?>"/>>
+        <input type="text" name="postcode" placeholder="2903LS" value="<?php if ($errors['postcode'] == ' '){echo $_POST['postcode'];} ?>"/>
         <?= $errors['postcode'] ?>
 
         <label for="email">
-            <br>Je Email</br>
+            <br>E-mail</br>
         </label>
-        <input type="text" name="email" placeholder="femkehart@hotmail.com" value="<?php if ($errors['email'] == ' '){echo $_POST['email'];} ?>"/>>
-        <?= $errors['email '] ?>
-    </form>
+        <input type="text" name="email" placeholder="femkehart@hotmail.com" value="<?php if ($errors['email'] == ' '){echo $_POST['email'];} ?>"/>
+        <?= $errors['email'] ?>
 
-    <button>
-        <a href="datum.php"> Kiez uw Datum en tijdstip &#10095</a>
-    </button>
+<div>
+    <button type="submit" name="submit">Kies uw Datum en tijdstip &#10095</button>
+</div>
+    </form>
 </main>
 
 <footer>
