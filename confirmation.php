@@ -442,11 +442,11 @@ if(isset($_POST['submit'])){
 </nav>
 
 <header>
-    <h1>Aanmelden voor Autorijles</h1>
+    <h1>Aanmelden voor <?= ucfirst($_GET['opleiding']) ?>rijles</h1>
     <div>
-        <a href="#">Home</a>
-        <a href="#">Auto</a>
-        <a href="#">Aanmelden</a>
+        <a href="index.html">Home &#45</a>
+        <a href=""><?= ucfirst($_GET['opleiding']) ?> &#45</a>
+        <a href="">Aanmelden</a>
     </div>
 </header>
 

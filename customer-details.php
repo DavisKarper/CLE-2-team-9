@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$lesson_type_id = $_GET["opleiding"];
+$lesson_type_id = $_GET['opleiding'];
 $errors = ['name'=> '', 'email'=> '', 'phone_number'=> '', 'postcode'=> '', 'address'=> '', 'lesson_packet'=> ''];
 //Check of het formulier is ingevuld. Zo niet, laat het formulier zien en behoud wat er in staat als het deels ingevuld is:
 if (isset($_POST['submit'])) {
@@ -16,22 +16,22 @@ if (isset($_POST['submit'])) {
         $errors['email'] = ' ';
     }
     if ($_POST['phone_number'] == '') {
-        $errors['phone_number'] = 'Vul jouw telefoonnummer in';
+        $errors['phone_number'] = 'Vul jouw telefoonnummer in.';
     } else {
         $errors['phone_number'] = ' ';
     }
     if ($_POST['postcode'] == '') {
-        $errors['postcode'] = 'Je moet een postcode opgeven';
+        $errors['postcode'] = 'Je moet een postcode opgeven.';
     } else {
         $errors['postcode'] = ' ';
     }
     if ($_POST['address'] == '') {
-        $errors['address'] = 'Je moet je straatnaam en huisnummer nog invullen';
+        $errors['address'] = 'Je moet je straatnaam en huisnummer nog invullen.';
     } else {
         $errors['address'] = ' ';
     }
     if ($_POST['lesson_packet'] == '') {
-        $errors['lesson_packet'] = 'je moet een lespakket kiezen';
+        $errors['lesson_packet'] = 'je moet een lespakket kiezen.';
     } else {
         $errors['lesson_packet'] = ' ';
     }
@@ -256,6 +256,9 @@ if ($errors['name'] == ' ' && $errors['email'] == ' ' && $errors['phone_number']
         form label {
             font-weight: bold;
         }
+        .error{
+            color: #f14b59;
+        }
 
         label {
             display: block;
@@ -362,7 +365,7 @@ if ($errors['name'] == ' ' && $errors['email'] == ' ' && $errors['phone_number']
     </div>
     <div class="bottom">
         <img class="logo" src="img/mado-logo.png" alt="logo">
-        <a class="bottom-home">
+        <a class="bottom-home" href="index.html">
             <p>HOME</p>
         </a>
         <a class="bottom-auto">
@@ -382,58 +385,70 @@ if ($errors['name'] == ' ' && $errors['email'] == ' ' && $errors['phone_number']
 </nav>
 
 <header>
-    <h1>Aanmelden voor Autorijles</h1>
+    <h1>Aanmelden voor <?= ucfirst($_GET['opleiding']) ?>rijles</h1>
     <div>
         <a href="index.html">Home &#45</a>
-        <a href="">Auto &#45</a>
+        <a href=""><?= ucfirst($_GET['opleiding']) ?> &#45</a>
         <a href="">Aanmelden</a>
     </div>
 </header>
 
 <main>
-    <h2>Direct aanmelden auto opleiding</h2>
+    <h2>Direct aanmelden <?= $_GET['opleiding'] ?> opleiding</h2>
     <img src="img/step 1.png" alt="step indicator">
     <h2>Je gegevens</h2>
 
     <form action="" method="post">
 
         <label for="lesson_packet">
-            <br>Kies je Motor pakket </br>
+            <br>Kies je <?= $_GET['opleiding'] ?> pakket </br>
         </label>
         <select name="lesson_packet" id="lesson_packet">
             <option value="" selected="selected" disabled="">--- MAAK EEN KEUZE ---</option>
-            <option value="A">Pakket Compleet A</option>
-            <option value="B">Pakket Compleet B</option>
-            <option value="C">Pakket Compleet C</option>
+            <option value="1">Pakket Pro</option>
+            <option value="2">Pakket Gevorderd</option>
+            <option value="3">Pakket Starter</option>
+            <option value="4">Pakket Beginner</option>
         </select>
-        <?= $errors['lesson_packet'] ?>
+        <div class="error">
+            <?= $errors['lesson_packet'] ?>
+        </div>
 
         <label for="name">
             <br>Naam</br>
         </label>
         <input type="text" name="name" placeholder="Femke Hart" value="<?php if ($errors['name'] == ' '){echo $_POST['name'];} ?>"/>
-        <?= $errors['name'] ?>
+        <div class="error">
+            <?= $errors['name'] ?>
+        </div>
         <label for="phone_number">
             <br>Telefoonnummer</br>
         </label>
         <input type="text" name="phone_number" placeholder="0612345678" value="<?php if ($errors['phone_number'] == ' '){echo $_POST['phone_number'];} ?>"/>
+        <div class="error">
             <?= $errors['phone_number'] ?>
+        </div>
         <label for="address">
             <br>Straatnaam en huisnummer</br>
         </label>
         <input type="text" name="address" placeholder="Kanaalweg 6A" value="<?php if ($errors['address'] == ' '){echo $_POST['address'];} ?>"/>
+        <div class="error">
             <?= $errors['address'] ?>
+        </div>
         <label for="postcode">
             <br>Postcode</br>
         </label>
         <input type="text" name="postcode" placeholder="2903LS" value="<?php if ($errors['postcode'] == ' '){echo $_POST['postcode'];} ?>"/>
-        <?= $errors['postcode'] ?>
-
+        <div class="error">
+            <?= $errors['postcode'] ?>
+        </div>
         <label for="email">
             <br>E-mail</br>
         </label>
         <input type="text" name="email" placeholder="femkehart@hotmail.com" value="<?php if ($errors['email'] == ' '){echo $_POST['email'];} ?>"/>
-        <?= $errors['email'] ?>
+        <div class="error">
+            <?= $errors['email'] ?>
+        </div>
 
 <div>
     <button type="submit" name="submit">Kies uw Datum en tijdstip &#10095</button>

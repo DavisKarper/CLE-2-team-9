@@ -1037,16 +1037,16 @@ if (isset($_POST['no-date-button'])) {
 </nav>
 
 <header>
-    <h1>Aanmelden voor Autorijles</h1>
+    <h1>Aanmelden voor <?= ucfirst($_GET['opleiding']) ?>rijles</h1>
     <div>
-        <a href="#">Home &#45</a>
-        <a href="#">Auto &#45</a>
-        <a href="#">Aanmelden</a>
+        <a href="index.html">Home &#45</a>
+        <a href=""><?= ucfirst($_GET['opleiding']) ?> &#45</a>
+        <a href="">Aanmelden</a>
     </div>
 </header>
 
 <main>
-    <h2>Direct aanmelden auto opleiding</h2>
+    <h2>Direct aanmelden <?= $_GET['opleiding'] ?> opleiding</h2>
     <img src="img/step 2.png" alt="step indicator">
     <h2>Kies je datum en tijdstip</h2>
     <h3 class="werk-tijd">&#10035 We werken van 9:00 (9:00 am) tot 19:00 (7:00 pm)</h3><br><br>
