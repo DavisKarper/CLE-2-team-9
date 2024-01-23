@@ -5,14 +5,14 @@ if (isset($_POST['no-date-button'])) {
     $_SESSION['date'] = 'Nog inplannen';
     $_SESSION['planned_in'] = 0;
     //ga door naar bevestigingspagina
-    header('location: confirm.php');
+    header('location: confirmationconfirmation.php');
     exit;
 } else if (isset($_POST['date-button'])) {
     //zend data door naar andere bevestigingspagina
     $_SESSION['date'] = $_POST['date'];
     $_SESSION['planned_in'] = 1;
     //ga door naar bevestigingspagina
-    header('location: confirm.php');
+    header('location: confirmation.php');
     exit;
 }
 ?>
@@ -1049,6 +1049,7 @@ if (isset($_POST['no-date-button'])) {
     <h2>Direct aanmelden auto opleiding</h2>
     <img src="img/step 2.png" alt="step indicator">
     <h2>Kies je datum en tijdstip</h2>
+    <h3 class="werk-tijd">&#10035 We werken van 9:00 (9:00 am) tot 19:00 (7:00 pm)</h3><br><br>
 </main>
 
 <div class="app-container" ng-app="dateTimeApp" ng-controller="dateTimeCtrl as ctrl" ng-cloak>
@@ -1096,7 +1097,6 @@ if (isset($_POST['no-date-button'])) {
                     </div>
                 </div>
             </div>
-            <p class="werk-tijd">&#10035 Onze werk tijd is van 9:30 am tot 3:00 pm.</p>
 
             <div class="timepicker" ng-if="picktime == 'true'">
                 <div ng-class="{'am': timeframe == 'am', 'pm': timeframe == 'pm' }">
